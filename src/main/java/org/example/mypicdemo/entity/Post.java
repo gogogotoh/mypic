@@ -16,7 +16,7 @@ public class Post{
 
     private LocalDate date;
 
-    private String imageUrl;
+    private String imageUrl; //게시글 대표 이미지
 
     private String title;
 

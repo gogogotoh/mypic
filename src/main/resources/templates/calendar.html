@@ -16,6 +16,28 @@
             max-width: 900px;
             margin: 40px auto;
         }
+
+        .fc-daygrid-day {
+            position: relative;
+        }
+
+
+        .fc-event {
+            background-color: transparent !important; /* 기본 배경 제거 */
+            border: none !important;
+            padding: 0;
+        }
+
+        .event-full {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        #calendar {
+            max-width: 900px;
+            margin: 40px auto;
+        }
         .fc-daygrid-day-number {
             font-size: 18px;
         }
@@ -35,7 +57,6 @@
 </head>
 <body>
 
-<h1>2025년 5월 9일</h1>
 <div id="calendar"></div>
 
 <script>
@@ -45,7 +66,7 @@
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'ko',
-            events: '/api/events', // 백엔드에서 제공하는 이벤트 데이터를 불러옵니다.
+            events: '/api/calendar/photos', // 백엔드에서 제공하는 이벤트 데이터를 불러옵니다.
 
             // 이벤트 클릭 시 상세 페이지로 이동
             eventClick: function(info) {
@@ -58,13 +79,16 @@
             // 이벤트 컨텐츠 (썸네일 이미지 삽입)
             eventContent: function(arg) {
                 const imgUrl = arg.event.extendedProps?.imageUrl;
+                const title = arg.event.title;
                 return {
-                    html: `<img src="${imgUrl}" class="event-thumbnail" />`
+                    html: `<img src="${imgUrl}" class="event-full" />`
+
                 };
             }
         });
 
         calendar.render();
+
     });
 </script>
 
